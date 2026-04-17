@@ -1,38 +1,23 @@
-import java.util.*;
-
 public class TrainConsistManagement {
-
-    static class InvalidCapacityException extends Exception {
-        InvalidCapacityException(String message) {
-            super(message);
-        }
-    }
-
-    static class PassengerBogie {
-        String name;
-        int capacity;
-
-        PassengerBogie(String name, int capacity) throws InvalidCapacityException {
-            if (capacity <= 0) {
-                throw new InvalidCapacityException("Invalid capacity: " + capacity);
-            }
-            this.name = name;
-            this.capacity = capacity;
-        }
-    }
 
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
-        List<PassengerBogie> bogies = new ArrayList<>();
+        int[] capacities = {72, 56, 24, 80, 60};
 
-        try {
-            bogies.add(new PassengerBogie("Sleeper", 72));
-            bogies.add(new PassengerBogie("AC Chair", 0));
-        } catch (InvalidCapacityException e) {
-            System.out.println(e.getMessage());
+        for (int i = 0; i < capacities.length - 1; i++) {
+            for (int j = 0; j < capacities.length - i - 1; j++) {
+                if (capacities[j] > capacities[j + 1]) {
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
         }
 
-        System.out.println("Total bogies added: " + bogies.size());
+        System.out.print("Sorted capacities: ");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
     }
 }
