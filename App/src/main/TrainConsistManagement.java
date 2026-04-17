@@ -1,23 +1,14 @@
+import java.util.*;
+
 public class TrainConsistManagement {
 
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
-        int[] capacities = {72, 56, 24, 80, 60};
+        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "Cargo", "Guard"};
 
-        for (int i = 0; i < capacities.length - 1; i++) {
-            for (int j = 0; j < capacities.length - i - 1; j++) {
-                if (capacities[j] > capacities[j + 1]) {
-                    int temp = capacities[j];
-                    capacities[j] = capacities[j + 1];
-                    capacities[j + 1] = temp;
-                }
-            }
-        }
+        Arrays.sort(bogieNames);
 
-        System.out.print("Sorted capacities: ");
-        for (int c : capacities) {
-            System.out.print(c + " ");
-        }
+        System.out.println("Sorted bogie names: " + Arrays.toString(bogieNames));
     }
 }
