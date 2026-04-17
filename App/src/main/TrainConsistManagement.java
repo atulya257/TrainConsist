@@ -3,21 +3,22 @@ public class TrainConsistManagement {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
-        int[] capacities = {72, 56, 24, 80, 60};
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG410"};
+        String searchKey = "BG309";
 
-        for (int i = 0; i < capacities.length - 1; i++) {
-            for (int j = 0; j < capacities.length - i - 1; j++) {
-                if (capacities[j] > capacities[j + 1]) {
-                    int temp = capacities[j];
-                    capacities[j] = capacities[j + 1];
-                    capacities[j + 1] = temp;
-                }
+        boolean found = false;
+
+        for (String id : bogieIds) {
+            if (id.equals(searchKey)) {
+                found = true;
+                break;
             }
         }
 
-        System.out.print("Sorted capacities: ");
-        for (int c : capacities) {
-            System.out.print(c + " ");
+        if (found) {
+            System.out.println("Bogie found: " + searchKey);
+        } else {
+            System.out.println("Bogie not found: " + searchKey);
         }
     }
 }
