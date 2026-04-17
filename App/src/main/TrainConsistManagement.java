@@ -5,19 +5,25 @@ public class TrainConsistManagement {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieNames = {"Sleeper", "AC Chair", "First Class", "Cargo", "Guard"};
-        Arrays.sort(bogieNames);
-        System.out.println("Sorted bogie names: " + Arrays.toString(bogieNames));
-
-        String[] bogieIds = {"BG101", "BG205", "BG309", "BG410"};
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG410", "BG512"};
         String searchKey = "BG309";
 
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (String id : bogieIds) {
-            if (id.equals(searchKey)) {
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int cmp = searchKey.compareTo(bogieIds[mid]);
+
+            if (cmp == 0) {
                 found = true;
                 break;
+            } else if (cmp > 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
